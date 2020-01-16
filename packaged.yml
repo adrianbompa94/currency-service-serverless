@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'currency-serverless
+
+  Sample SAM Template for currency-serverless
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Resources:
+  CurrencyFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://currency-serverless-function/4f3275667966abd679f2f224c0145087
+      Handler: app.lambda_handler
+      Runtime: python3.7
+      Description: An Amazon Lambda function that uses exchange rate API to update
+        currency rates.
+      Timeout: 5
+      Environment:
+        Variables:
+          org_db_host_name: org_mysql_container_1
+          org_db_username: root
+          org_db_password: example
